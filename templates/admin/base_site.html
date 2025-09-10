@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}PERCYCAR | Admin{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    .percy-topbar a.button{padding:4px 10px;border-radius:8px;text-decoration:none;font-weight:600;}
+    .percy-topbar a.primary{background:#0d6efd;color:#fff;}
+    .percy-topbar a.neutral{background:#eef2ff;color:#111827;}
+    #site-name img{height:34px;vertical-align:middle;margin-right:8px;}
+    #site-name a{text-decoration:none;font-weight:700;color:#0b1736;}
+  </style>
+{% endblock %}
+
+{% block branding %}
+  <div id="site-name">
+    <a href="{% url 'admin:index' %}">
+      <img src="{% static 'logo.png' %}" alt="PERCYCAR">
+      PERCYCAR — Admin
+    </a>
+  </div>
+{% endblock %}
+
+{% block nav-global %}
+  <div class="percy-topbar" style="display:flex;gap:.5rem;align-items:center;">
+    <a href="{% url 'admin:index' %}" class="button neutral">Inicio admin</a>
+    <a href="{% url 'importar_puntos' %}" class="button primary">Importar puntos</a>
+  </div>
+{% endblock %}

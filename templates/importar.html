@@ -1,0 +1,26 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>Importar puntos (CSV)</h1>
+  <p>Formato: <code>dni,nombre,puntos</code></p>
+
+  <form method="post" action="{% url 'importar_puntos_subir' %}" enctype="multipart/form-data" style="margin: 16px 0;">
+    {% csrf_token %}
+    <input type="file" name="archivo" accept=".csv" required>
+    <button type="submit" class="button default">Subir</button>
+  </form>
+
+  {% if messages %}
+    <ul class="messagelist">
+      {% for m in messages %}
+        <li class="{{ m.tags }}">{{ m }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <pre style="background:#f8f8f8; padding:10px; border:1px solid #eee; border-radius:6px;">
+dni,nombre,puntos
+12345678,Juan Perez,150
+87654321,Ana Gomez,80
+  </pre>
+{% endblock %}

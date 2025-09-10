@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PERCYCAR — Consulta de Puntos</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="header">
+    <img src="/static/logo.png" alt="PERCYCAR Logo">
+    <div class="brand">
+      <h1>PERCYCAR</h1>
+      <small>Estaciones de servicio • Programa de puntos</small>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="search-card">
+      <form method="get" action="">
+        <div class="input-row">
+          <input name="dni" type="text" inputmode="numeric" minlength="8" maxlength="12" placeholder="Ingresa tu DNI" required>
+          <button class="button" type="submit">Consultar</button>
+        </div>
+      </form>
+
+      {% if resultado %}
+        <div class="result">
+          <h3>{{ resultado.nombre }} <span class="notice">DNI: {{ resultado.dni }}</span></h3>
+          <div class="points">Puntos acumulados: <span class="points-value">{{ resultado.puntos }}</span></div>
+          <div class="notice">Actualizado: {{ resultado.actualizado }}</div>
+        </div>
+      {% elif request.GET.dni %}
+        <div class="alert">No se encontró el DNI ingresado.</div>
+      {% else %}
+        <p class="notice">Escribe tu DNI y presiona <strong>Consultar</strong>.</p>
+      {% endif %}
+    </section>
+
+    <section class="bar-wrap" aria-label="Productos y puntos">
+      <div class="marquee">
+        {% for p in products %}
+          <div class="product">
+            <div class="ico">{{ p.icon }}</div>
+            <div class="name">{{ p.name }}</div>
+            <div class="pts">{{ p.points }} pts</div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="footer">© PERCYCAR · Programa de fidelización</div>
+  </main>
+</body>
+</html>

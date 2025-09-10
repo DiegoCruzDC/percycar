@@ -1,0 +1,26 @@
+:root{
+  --bg:#ffffff; --text:#0b1736; --primary:#e31c23; --accent:#f0b429; --border:#e5e7eb;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;color:var(--text);background:var(--bg)}
+.header{display:flex;align-items:center;gap:12px;padding:20px 16px;border-bottom:4px solid var(--accent)}
+.header img{height:48px}
+.brand h1{margin:0;font-size:22px;letter-spacing:.4px}
+.brand small{color:#475569}
+.container{max-width:920px;margin:0 auto;padding:16px}
+.search-card{margin:16px auto;padding:20px;border-radius:16px;background:linear-gradient(180deg,#fff,#f7fafc);border:1px solid var(--border);box-shadow:0 8px 20px rgba(10,27,94,.06)}
+.input-row{display:grid;grid-template-columns:1fr auto;gap:10px}
+.input-row input{padding:14px 16px;border-radius:12px;border:1px solid var(--border);font-size:16px}
+.button{padding:14px 18px;border:0;border-radius:12px;background:var(--primary);color:#fff;font-weight:600;cursor:pointer}
+.result{margin-top:14px;padding:16px;border-radius:14px;background:#fff;border:1px solid var(--border)}
+.notice{color:#475569;margin-top:10px}
+.points{display:inline-block;background:var(--accent);color:#1f2937;padding:6px 10px;border-radius:999px;font-weight:700}
+.alert{background:#fff7ed;border:1px solid #fed7aa;padding:10px;border-radius:8px;margin-top:12px;color:#92400e}
+.bar-wrap{margin-top:22px;border-top:2px solid var(--border);padding:10px 0;overflow:hidden}
+.marquee{display:flex;gap:14px;animation:scroll 18s linear infinite;will-change:transform}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.product{display:flex;align-items:center;gap:10px;min-width:220px;padding:10px 12px;border:1px solid var(--border);background:#fff;border-radius:12px;box-shadow:0 4px 10px rgba(10,27,94,.04)}
+.product .ico{width:34px;height:34px;border-radius:10px;background:rgba(240,180,41,.15);display:grid;place-items:center;font-size:18px}
+.product .name{font-weight:600}
+.product .pts{margin-left:auto;background:#0b1736;color:#fff;padding:4px 8px;border-radius:999px;font-size:12px}
+.footer{text-align:center;color:#64748b;font-size:12px;padding:20px 0 30px}
