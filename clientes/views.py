@@ -8,12 +8,12 @@ from .models import Cliente
 
 # Productos demo para la barra inferior
 DEMO_PRODUCTS = [
-{"icon":"🍚","name":"ARROZ 5 KG","points":5000},
+{"icon":"🍚","name":"ARROZ 5 KG","points":4000},
 {"icon":"🛢️","name":"CAMBIO DE ACEITE","points":10000},
 {"icon":"🏷️🛍️","name":"AZÚCAR 5 KG","points":4500},
-{"icon":"🥤","name":"TOMATODO","points":2000},
-{"icon":"🥛","name":"TAZA","points":1500},
-{"icon":"⛽","name":"VALE DE 50 SOLES COMBUSTIBLE","points":8000}
+{"icon":"🥤","name":"TOMATODO","points":1000},
+{"icon":"🥛","name":"TAZA","points":500},
+{"icon":"⛽","name":"VALE DE 50 SOLES COMBUSTIBLE","points":5000}
 
 ]
 def get_products():
