@@ -1,6 +1,8 @@
-Django>=5.0
+Django>=5.0,<6
 gunicorn
 python-dotenv
 dj-database-url
-psycopg2-binary
 whitenoise
+psycopg2-binary
+pandas>=2.2,<3
+openpyxl

@@ -1,0 +1,68 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>Previsualización de importación</h1>
+
+  <div class="resumen-box">
+    <strong>Resumen:</strong>
+    <ul>
+      <li>Total filas válidas: <strong>{{ resumen.total }}</strong></li>
+      <li>Nuevos (DNI no existentes): <strong>{{ resumen.nuevos }}</strong></li>
+      <li>Sumarán a existentes: <strong>{{ resumen.sumas }}</strong></li>
+      <li>DNIs con <u>nombre diferente</u>: 
+        <strong class="text-difiere">{{ resumen.nombre_difiere }}</strong>
+      </li>
+      <li>Filas inválidas/omitidas: 
+        <strong class="text-error">{{ resumen.invalidos }}</strong>
+      </li>
+    </ul>
+    {% if total_rows > rows|length %}
+      <div class="text-muted">Mostrando primeras {{ rows|length }} de {{ total_rows }} filas.</div>
+    {% endif %}
+  </div>
+
+  <form method="post" action="{% url 'importar_puntos_confirm' %}" class="form-import">
+    {% csrf_token %}
+    <button type="submit" class="btn-confirm">✅ Confirmar e importar (sumar puntos)</button>
+    <a href="{% url 'importar_puntos' %}" class="btn-cancel">Cancelar</a>
+  </form>
+
+  <table class="tabla-preview">
+    <thead>
+      <tr>
+        <th>DNI</th>
+        <th>Nombre (archivo)</th>
+        <th>Puntos a sumar</th>
+        <th>Nombre actual (BD)</th>
+        <th>Puntos actuales</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+        <tr class="{% if not r.existe %}nuevo{% elif not r.nombre_ok %}nombre-difiere{% else %}normal{% endif %}">
+          <td>{{ r.dni }}</td>
+          <td>{{ r.nombre }}</td>
+          <td style="text-align:right">{{ r.puntos_a_sumar }}</td>
+          <td>{{ r.nombre_actual }}</td>
+          <td style="text-align:right">{{ r.puntos_actuales }}</td>
+          <td>
+            {% if not r.existe %}
+              <span class="estado-nuevo">Nuevo</span>
+            {% elif not r.nombre_ok %}
+              <span class="estado-difiere">Nombre diferente</span>
+            {% else %}
+              {{ r.estado }}
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <form method="post" action="{% url 'importar_puntos_confirm' %}" class="form-import">
+    {% csrf_token %}
+    <button type="submit" class="btn-confirm">✅ Confirmar e importar (sumar puntos)</button>
+    <a href="{% url 'importar_puntos' %}" class="btn-cancel">Cancelar</a>
+  </form>
+{% endblock %}
